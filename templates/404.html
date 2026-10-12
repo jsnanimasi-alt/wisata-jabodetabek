@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Halaman tidak ditemukan{% endblock %}
+{% block content %}
+<section class="wrap sec page-head">
+  <h1>Halaman tidak ditemukan</h1>
+  <p>Alamat yang Anda buka tidak ada atau destinasinya sudah dihapus.</p>
+  <a class="btn" href="{{ url_for('destinations') }}">Lihat semua destinasi</a>
+</section>
+{% endblock %}

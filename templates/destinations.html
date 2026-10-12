@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Semua destinasi{% endblock %}
+{% block page %}destinations{% endblock %}
+{% block content %}
+<section class="wrap sec page-head">
+  <h1>Semua destinasi</h1>
+  <p>Cari berdasarkan nama, lalu saring menurut wilayah dan kategori.</p>
+  <div class="filters">
+    <label class="sr" for="fq">Cari nama destinasi</label>
+    <input id="fq" type="search" placeholder="Cari nama destinasi" autocomplete="off">
+    <div class="chips" id="regionChips" role="group" aria-label="Wilayah">
+      <button class="chip on" data-region="">Semua wilayah</button>
+      {% for r in REGIONS %}<button class="chip" data-region="{{ r }}">{{ r }}</button>{% endfor %}
+    </div>
+    <div class="chips" id="catChips" role="group" aria-label="Kategori">
+      <button class="chip on" data-cat="">Semua kategori</button>
+      {% for c in CATEGORIES %}<button class="chip" data-cat="{{ c }}">{{ c }}</button>{% endfor %}
+    </div>
+  </div>
+  <p class="result" id="result" aria-live="polite"></p>
+  <div class="grid" id="list"></div>
+  <div id="state"></div>
+</section>
+{% endblock %}
