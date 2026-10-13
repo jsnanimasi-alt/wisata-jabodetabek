@@ -201,7 +201,15 @@ def api_destinations():
 
 @app.errorhandler(404)
 def not_found(_):
-    return render_template("404.html"), 404
+    # Info diagnostik sementara; hapus `dbg` setelah deploy normal.
+    dbg = {
+        "request.path": request.path,
+        "PATH_INFO": request.environ.get("PATH_INFO"),
+        "QUERY_STRING": request.environ.get("QUERY_STRING"),
+        "SCRIPT_NAME": request.environ.get("SCRIPT_NAME"),
+        **{k: v for k, v in request.headers.items() if k.lower().startswith(("x-vercel", "x-matched", "x-forwarded-uri"))},
+    }
+    return render_template("404.html", dbg=dbg), 404
 
 
 if __name__ == "__main__":
