@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Temukan wisata Jabodetabek{% endblock %}
+{% block page %}home{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="wrap hero-in">
+    <div class="hero-copy">
+      <h1>Akhir pekan dekat rumah, rasa liburan jauh.</h1>
+      <p>{{ total }} destinasi di lima wilayah, dari mangrove Jakarta Utara sampai hutan pinus Bogor.</p>
+      <form class="search" action="{{ url_for('destinations') }}" method="get" role="search">
+        <label class="sr" for="q">Cari nama destinasi</label>
+        <input id="q" name="q" type="search" placeholder="Cari destinasi, mis. Kebun Raya" autocomplete="off">
+        <button class="btn" type="submit">Cari</button>
+      </form>
+    </div>
+    <ol class="regions" aria-label="Pilih wilayah">
+      {% for r in REGIONS %}
+      <li><a href="{{ url_for('destinations', region=r) }}"><span>{{ r }}</span><small>{{ counts[r] }} destinasi</small></a></li>
+      {% endfor %}
+    </ol>
+  </div>
+</section>
+
+<section class="wrap sec">
+  <h2>Cari berdasarkan suasana</h2>
+  <div class="cats">
+    {% for c in CATEGORIES %}
+    <a class="cat {{ CAT_CLASS[c] }}" href="{{ url_for('destinations', category=c) }}"><b>{{ c }}</b><span>{{ CAT_BLURB[c] }}</span></a>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="wrap sec">
+  <div class="sec-head"><h2>Destinasi unggulan</h2><a class="link" href="{{ url_for('destinations') }}">Lihat semua</a></div>
+  <div class="grid" id="list" data-featured="1"></div>
+  <div id="state"></div>
+</section>
+{% endblock %}
