@@ -207,10 +207,6 @@ def not_found(_):
         "PATH_INFO": request.environ.get("PATH_INFO"),
         "QUERY_STRING": request.environ.get("QUERY_STRING"),
         "SCRIPT_NAME": request.environ.get("SCRIPT_NAME"),
-<<<<<<< HEAD
-        **{k: v for k, v in request.headers.items() if k.lower().startswith(("x-vercel", "x-matched", "x-forwarded-uri"))},
-=======
->>>>>>> 70ed588 (Hapus rewrite vercel, pakai deteksi Flask otomatis)
     }
     return render_template("404.html", dbg=dbg), 404
 
